@@ -1,0 +1,52 @@
+<div class="col-md-4 col-md-offset-4">
+    <h2>Sign Up</h2>
+    <form name="form" [formGroup]="signupForm"  (ngSubmit)="signUp(signupForm)" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': signupFormControl.firstName.invalid && signupFormControl.firstName.dirty, 'has-success': signupFormControl.firstName.valid }">
+            <label for="firstName">First Name</label>
+            <label for="firstName">{{signupFormControl.firstName.errors | json }}</label>
+            <input type="text" #firstName formControlName= "firstName" class="form-control" name="firstName" required />
+            <div *ngIf="signupFormControl.firstName.errors && !signupFormControl.firstName.pristine">
+                <div *ngIf="signupFormControl.firstName.hasError('required')" class="help-block">First Name is required</div>
+                <div *ngIf="signupFormControl.firstName.hasError('minlength')" class="help-block">First Name should be greater than {{signupFormControl.firstName.errors.minlength.requiredLength}} charector</div>
+                <div *ngIf="signupFormControl.firstName.hasError('maxlength')" class="help-block">First Name should be less than {{signupFormControl.firstName.errors.maxlength.requiredLength}} charector</div>
+            </div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': signupFormControl.lastName.invalid && signupFormControl.lastName.dirty }">
+            <label for="lastName">Last Name</label>
+            <input type="text" formControlName= "lastName" class="form-control" name="lastName" required />
+            <div *ngIf="signupFormControl.lastName.errors && !signupFormControl.lastName.pristine">
+                <div *ngIf="signupFormControl.lastName.hasError('required')" class="help-block">Last Name is required</div>
+                <div *ngIf="signupFormControl.lastName.hasError('minlength')" class="help-block">Last Name should be greater than {{signupFormControl.lastName.errors.minlength.requiredLength}} charector</div>
+                <div *ngIf="signupFormControl.lastName.hasError('maxlength')" class="help-block">Last Name should be less than {{signupFormControl.lastName.errors.maxlength.requiredLength}} charector</div>
+            </div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': signupFormControl.email.invalid && signupFormControl.email.dirty }">
+            <label for="email">E-mail</label>
+            <input type="text" formControlName= "email" class="form-control" name="email" required />
+            <div *ngIf="signupFormControl.email.errors && !signupFormControl.email.pristine">
+                <div *ngIf="signupFormControl.email.hasError('email')" class="help-block">Email is required</div>
+            </div>
+        </div>
+        <!-- <div formGroupName="passgroup"> -->
+        <div class="form-group" [ngClass]="{ 'has-error': signupFormControl.password.invalid && signupFormControl.password.dirty }">
+            <label for="password">Password</label>
+            <input type="password" formControlName="password" class="form-control" name="password" required />
+            <div *ngIf="signupFormControl.password.errors && !signupFormControl.password.pristine">
+                <div *ngIf="signupFormControl.password.hasError('required')" class="help-block">Password is required</div>
+            </div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': signupFormControl.confirmPassword.invalid && signupFormControl.confirmPassword.dirty }">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" formControlName="confirmPassword" class="form-control" name="confirmPassword" required />
+            <div *ngIf="signupFormControl.confirmPassword.errors && !signupFormControl.confirmPassword.pristine">
+                <div *ngIf="signupFormControl.confirmPassword.hasError('required')" class="help-block">Password is required</div>
+                <div *ngIf="signupFormControl.confirmPassword.hasError('mismatch')" class="help-block">Password Mismatched</div>
+            </div>
+        </div>
+        <!-- </div>    -->
+        <div class="form-group">
+            <button [disabled]="signupForm.invalid" class="btn btn-primary">Register</button>
+            <a [routerLink]="['/Login']" class="btn btn-link">Login</a>
+        </div>
+    </form>
+</div>
