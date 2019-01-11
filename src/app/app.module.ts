@@ -9,12 +9,16 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { UserpageComponent } from './userpage/userpage.component';
 
+// Custom Services
+import { LocalStorageSetupService } from './_services/localStorageSetup/local-storage-setup.service';
 
 const appRoutes: Routes = [
   { path: 'Home', component: HomeComponent},
   { path: 'Login', component: LoginComponent },
   { path: 'Signup', component: SignupComponent },
+  { path: 'Userpage', component: UserpageComponent },
   { path: '', redirectTo: '/Home', pathMatch: 'full'},
   { path: '**', component: PagenotfoundComponent }
   // { path: '', redirectTo: '/Login', pathMatch: 'full'},
@@ -28,17 +32,20 @@ const appRoutes: Routes = [
     LoginComponent,
     SignupComponent,
     PagenotfoundComponent,
+    UserpageComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      { enableTracing: false } // <-- debugging purposes only
     ),
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    LocalStorageSetupService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

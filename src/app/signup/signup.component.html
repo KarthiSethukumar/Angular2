@@ -27,23 +27,25 @@
                 <div *ngIf="signupFormControl.email.hasError('email')" class="help-block">Email is required</div>
             </div>
         </div>
-        <!-- <div formGroupName="passgroup"> -->
-        <div class="form-group" [ngClass]="{ 'has-error': signupFormControl.password.invalid && signupFormControl.password.dirty }">
-            <label for="password">Password</label>
-            <input type="password" formControlName="password" class="form-control" name="password" required />
-            <div *ngIf="signupFormControl.password.errors && !signupFormControl.password.pristine">
-                <div *ngIf="signupFormControl.password.hasError('required')" class="help-block">Password is required</div>
+        <div formGroupName="passwordgroup">
+            <div class="form-group" [ngClass]="{ 'has-error': passGrpControl.password.invalid && passGrpControl.password.dirty }">
+                <label for="password">Password</label>
+                <input type="password" formControlName="password" class="form-control" name="password" required />
+                <div *ngIf="passGrpControl.password.errors && !passGrpControl.password.pristine">
+                    <div *ngIf="passGrpControl.password.hasError('required')" class="help-block">Password is required</div>
+                    <div *ngIf="passGrpControl.password.hasError('Pattern')" class="help-block">pattern is wrong</div>
+                    <div *ngIf="passGrpControl.password.hasError('minlength')" class="help-block">Password should be more that 5 char</div>
+                </div>
             </div>
-        </div>
-        <div class="form-group" [ngClass]="{ 'has-error': signupFormControl.confirmPassword.invalid && signupFormControl.confirmPassword.dirty }">
-            <label for="confirmPassword">Confirm Password</label>
-            <input type="password" formControlName="confirmPassword" class="form-control" name="confirmPassword" required />
-            <div *ngIf="signupFormControl.confirmPassword.errors && !signupFormControl.confirmPassword.pristine">
-                <div *ngIf="signupFormControl.confirmPassword.hasError('required')" class="help-block">Password is required</div>
-                <div *ngIf="signupFormControl.confirmPassword.hasError('mismatch')" class="help-block">Password Mismatched</div>
+            <div class="form-group" [ngClass]="{ 'has-error': passGrpControl.confirmPassword.invalid && passGrpControl.confirmPassword.dirty }">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" formControlName="confirmPassword" class="form-control" name="confirmPassword" required />
+                <div *ngIf="passGrpControl.confirmPassword.errors && !passGrpControl.confirmPassword.pristine">
+                    <div *ngIf="passGrpControl.confirmPassword.hasError('required')" class="help-block">Password is required</div>
+                    <div *ngIf="passGrpControl.confirmPassword.hasError('mismatch')" class="help-block">Password Mismatched</div>
+                </div>
             </div>
-        </div>
-        <!-- </div>    -->
+        </div>   
         <div class="form-group">
             <button [disabled]="signupForm.invalid" class="btn btn-primary">Register</button>
             <a [routerLink]="['/Login']" class="btn btn-link">Login</a>
